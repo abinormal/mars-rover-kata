@@ -4,16 +4,27 @@
 
 
 class Plateau {
-X_MIN: int = 0
-Y_MIN: int = 0
-X_MAX: int
-Y_MAX: int
+- X_MIN: int = 0
+- Y_MIN: int = 0
+- X_MAX: int
+- Y_MAX: int
 ' Other rover position?
 
 + plateau(x int, y int): void
 + move(x int, y int, d Direction): errorMsg
 - collisionCheck(): errorMsg
 - edgeCheck(): errorMsg
+}
+
+class Rover {
+- SPEED: int = 1
+- posX: int
+- posY: int
+- direction: Direction
++ processMovement() : errorMsg
+- goLeft()
+- goRight()
+- move(direction Direction): errorMsg
 }
 
 enum Direction {
