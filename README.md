@@ -8,6 +8,7 @@ Rovers navigate the Plateau so they can use their special cameras and robot arms
 
 # Assumptions:
 * The surface is square/rectangular
+* The coordinates begin at 0,0
 * The rovers only move forwards one square at a time
 * Cannot go over the side of the plateau - no minus numbers
 * Rovers cannot occupy the same area
@@ -19,3 +20,6 @@ Rovers navigate the Plateau so they can use their special cameras and robot arms
 # Questions:
 * What happens if the Rover cannot complete a manouvre? 
 * Will end user want to give a rover more than one move instruction in the future?
+
+# Futureproofing?
+* Add optional args to the Plateau class to take minimum x and y coordinates.
