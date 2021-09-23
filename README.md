@@ -16,3 +16,6 @@ Rovers navigate the Plateau so they can use their special cameras and robot arms
 * Movement instructions can only be made up of "LRM"
 
 
+# Questions:
+* What happens if the Rover cannot complete a manouvre? 
+* Will end user want to give a rover more than one move instruction in the future?
