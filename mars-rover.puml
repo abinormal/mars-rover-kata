@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class Plateau {
+X_MIN: int = 0
+Y_MIN: int = 0
+X_MAX: int
+Y_MAX: int
+' Other rover position?
+
++ plateau(x int, y int): void
++ move(x int, y int, d Direction): errorMsg
+- collisionCheck(): errorMsg
+- edgeCheck(): errorMsg
+}
+
+enum Direction {
+NORTH,
+EAST,
+SOUTH,
+WEST
+}
+
+@enduml
