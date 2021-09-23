@@ -14,9 +14,9 @@ class Plateau {
 - Y_MAX: int
 
 + Plateau(x: int, y: int): void
-+ move(x: int, y: int, d: Direction): errorMsg
-- collisionCheck(): errorMsg
-- edgeCheck(): errorMsg
++ move(x: int, y: int, d: Direction): Error
+- collisionCheck(): Error
+- edgeCheck(): Error
 }
 
 class Rover {
@@ -27,11 +27,11 @@ class Rover {
 
 + Rover(x: int, y: int, d: Direction, speed: int)
 + getPosition(): x: int , y: int , d: Direction
-+ processMovement(movement: String) : errorMsg
-- checkMovementString(movement: String) : errorMsg
++ processMovement(movement: String) : Error
+- checkMovementString(movement: String) : Error
 - goLeft()
 - goRight()
-- move(d: Direction): errorMsg
+- move(d: Direction): Error
 }
 
 enum Error {
