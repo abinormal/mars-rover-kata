@@ -5,7 +5,7 @@ Rover }-- Plateau
 Rover -- Direction
 
 Error -- Plateau
-Error -- Rover
+Error -- Vehicle
 
 class Plateau {
 - X_MIN: int = 0
@@ -19,20 +19,24 @@ class Plateau {
 - edgeCheck(): Error
 }
 
-class Rover {
-- SPEED: int = 1
-- posX: int
-- posY: int
-- d: Direction
+class Vehicle {
+    - speed: int
+    - posX: int
+    - posY: int
+    - d: Direction
 
-+ Rover(x: int, y: int, d: Direction, speed: int)
-+ getPosition(): x: int , y: int , d: Direction
-+ processMovement(movement: String) : Error
-- checkMovementString(movement: String) : Error
-- goLeft()
-- goRight()
-- move(d: Direction): Error
+    + Vehicle(x: int, y: int, d: Direction, speed: int)
+    + getPosition(): x: int , y: int , d: Direction
+    + processMovement(movement: String) : Error
+    - checkMovementString(movement: String) : Error
+    - goLeft()
+    - goRight()
+    - move(d: Direction): Error
 }
+
+class Rover implements Vehicle {
+}
+
 
 enum Error {
     ERROR_OVER_EDGE,
