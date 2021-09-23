@@ -1,17 +1,20 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+Rover }-- Plateau
+Rover -- Direction
 
+Error -- Plateau
+Error -- Rover
 
 class Plateau {
 - X_MIN: int = 0
 - Y_MIN: int = 0
 - X_MAX: int
 - Y_MAX: int
-' Other rover position?
 
-+ plateau(x int, y int): void
-+ move(x int, y int, d Direction): errorMsg
++ Plateau(x: int, y: int): void
++ move(x: int, y: int, d: Direction): errorMsg
 - collisionCheck(): errorMsg
 - edgeCheck(): errorMsg
 }
@@ -20,11 +23,18 @@ class Rover {
 - SPEED: int = 1
 - posX: int
 - posY: int
-- direction: Direction
-+ processMovement() : errorMsg
+- d: Direction
+
++ Rover(x: int, y: int, d: Direction, speed: int)
++ processMovement(movement: String) : errorMsg
 - goLeft()
 - goRight()
-- move(direction Direction): errorMsg
+- move(d: Direction): errorMsg
+}
+
+enum Error {
+    ERROR_OVER_EDGE,
+    ERROR_TAKEN_SPOT
 }
 
 enum Direction {
