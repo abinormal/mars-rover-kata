@@ -26,7 +26,9 @@ class Rover {
 - d: Direction
 
 + Rover(x: int, y: int, d: Direction, speed: int)
++ getPosition(): x: int , y: int , d: Direction
 + processMovement(movement: String) : errorMsg
+- checkMovementString(movement: String) : errorMsg
 - goLeft()
 - goRight()
 - move(d: Direction): errorMsg
@@ -34,7 +36,8 @@ class Rover {
 
 enum Error {
     ERROR_OVER_EDGE,
-    ERROR_TAKEN_SPOT
+    ERROR_TAKEN_SPOT,
+    ERROR_BAD_MOVEMENT_STRING
 }
 
 enum Direction {
