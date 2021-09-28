@@ -15,15 +15,27 @@ public class Plateau {
         return Error.NO_ERROR;
     }
 
-    public int getYMax(){
+    public int getYMax() {
         return this.Y_MAX;
     }
-    public int getXMax(){
+
+    public int getXMax() {
         return this.X_MAX;
     }
-//    public Error move(int x, int y, Direction d){
-//        return Error.
-//    }
+
+    public Error move(int x, int y, Direction d) {
+        // Check the direction then see if the vehicle would go over the edge
+        if (d == Direction.NORTH && y >= this.Y_MAX) {
+            return Error.ERROR_OVER_EDGE;
+        } else if (d == Direction.EAST && x >= this.X_MAX) {
+            return Error.ERROR_OVER_EDGE;
+        } else if (d == Direction.SOUTH && y <= this.Y_MIN) {
+            return Error.ERROR_OVER_EDGE;
+        } else if (d == Direction.WEST && x <= this.X_MIN) {
+            return Error.ERROR_OVER_EDGE;
+        }
+        return Error.NO_ERROR;
+    }
 //+ move(x: int, y: int, d: Direction): Error
 //- collisionCheck(): Error
 //- edgeCheck(): Error
