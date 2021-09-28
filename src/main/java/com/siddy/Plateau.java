@@ -25,6 +25,14 @@ public class Plateau {
 
     public Error move(int x, int y, Direction d) {
         // Check the direction then see if the vehicle would go over the edge
+        Error error = edgeCheck(x, y, d);
+        if (error == Error.NO_ERROR) {
+            //Do collision check
+        }
+        return error;
+    }
+
+    public Error edgeCheck(int x, int y, Direction d) {
         if (d == Direction.NORTH && y >= this.Y_MAX) {
             return Error.ERROR_OVER_EDGE;
         } else if (d == Direction.EAST && x >= this.X_MAX) {
@@ -36,8 +44,4 @@ public class Plateau {
         }
         return Error.NO_ERROR;
     }
-//+ move(x: int, y: int, d: Direction): Error
-//- collisionCheck(): Error
-//- edgeCheck(): Error
-
 }
