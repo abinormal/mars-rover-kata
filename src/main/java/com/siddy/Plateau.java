@@ -6,9 +6,13 @@ public class Plateau {
     int X_MAX;
     int Y_MAX;
 
-    public void Plateau(int x, int y) {
+    public Error Plateau(int x, int y) {
+        if (x <= 0 || y <= 0) {
+            return Error.ERROR_INVALID_PLATEAU_SIZE;
+        }
         this.X_MAX = x;
         this.Y_MAX = y;
+        return Error.NO_ERROR;
     }
 
     public int getYMax(){

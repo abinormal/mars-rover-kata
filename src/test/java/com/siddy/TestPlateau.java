@@ -15,21 +15,26 @@ public class TestPlateau {
     }
 
     @Test
-    public void checkYEdge(){
-        p.Plateau(15,7);
+    public void checkYEdge() {
+        p.Plateau(15, 7);
         assertEquals(7, p.getYMax());
     }
 
     @Test
-    public void checkXEdge(){
-        p.Plateau(5,27);
+    public void checkXEdge() {
+        p.Plateau(5, 27);
         assertEquals(5, p.getXMax());
     }
 
     @Test
-    public void checkXMinus(){
-        p.Plateau(-5,27);
-        // Throw an exception/fail
-        assertEquals(5, p.getXMax());
+    public void checkXMinus() {
+        // Return Error
+        assertEquals(Error.ERROR_INVALID_PLATEAU_SIZE, p.Plateau(-5, 27));
+    }
+
+    @Test
+    public void checkYMinus() {
+        // Return Error
+        assertEquals(Error.ERROR_INVALID_PLATEAU_SIZE, p.Plateau(15, -27));
     }
 }
