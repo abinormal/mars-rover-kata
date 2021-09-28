@@ -83,7 +83,7 @@ public class TestPlateau {
         // Given a value can the vehicle move 1 space in the given direction?
         Error result = Error.NO_ERROR;
         if (p.Plateau(5, 6) == Error.NO_ERROR) {
-            result = p.move(1, 3, Direction.NORTH);
+            result = p.move(1, 5, Direction.NORTH);
         }
         assertEquals(Error.NO_ERROR, result);
     }
@@ -117,4 +117,5 @@ public class TestPlateau {
         }
         assertEquals(Error.NO_ERROR, result);
     }
+
 }

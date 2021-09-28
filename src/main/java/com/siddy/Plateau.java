@@ -25,12 +25,8 @@ public class Plateau {
 
     public Error move(int x, int y, Direction d) {
         // Check the direction then see if the vehicle would go over the edge
-        Error error = edgeCheck(x, y, d);
+        return edgeCheck(x, y, d);
         // If more than one vehicle do a collision check
-        if (error == Error.NO_ERROR) {
-            collisionCheck();
-        }
-        return error;
     }
 
     private Error edgeCheck(int x, int y, Direction d) {
