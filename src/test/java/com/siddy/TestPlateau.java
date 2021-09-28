@@ -39,7 +39,7 @@ public class TestPlateau {
     }
 
     @Test
-    public void checkMoveNorth() {
+    public void checkcantMoveNorth() {
         // Given a value can the vehicle move 1 space in the given direction?
         Error result = Error.NO_ERROR;
         if (p.Plateau(5, 6) == Error.NO_ERROR) {
@@ -49,7 +49,7 @@ public class TestPlateau {
     }
 
     @Test
-    public void checkMoveEast() {
+    public void checkcantMoveEast() {
         // Given a value can the vehicle move 1 space in the given direction?
         Error result = Error.NO_ERROR;
         if (p.Plateau(5, 6) == Error.NO_ERROR) {
@@ -59,7 +59,7 @@ public class TestPlateau {
     }
 
     @Test
-    public void checkMoveSouth() {
+    public void checkcantMoveSouth() {
         // Given a value can the vehicle move 1 space in the given direction?
         Error result = Error.NO_ERROR;
         if (p.Plateau(5, 6) == Error.NO_ERROR) {
@@ -69,12 +69,52 @@ public class TestPlateau {
     }
 
     @Test
-    public void checkMoveWest() {
+    public void checkcantMoveWest() {
         // Given a value can the vehicle move 1 space in the given direction?
         Error result = Error.NO_ERROR;
         if (p.Plateau(5, 6) == Error.NO_ERROR) {
             result = p.move(0, 3, Direction.WEST);
         }
         assertEquals(Error.ERROR_OVER_EDGE, result);
+    }
+
+    @Test
+    public void checkCanMoveNorth() {
+        // Given a value can the vehicle move 1 space in the given direction?
+        Error result = Error.NO_ERROR;
+        if (p.Plateau(5, 6) == Error.NO_ERROR) {
+            result = p.move(1, 3, Direction.NORTH);
+        }
+        assertEquals(Error.NO_ERROR, result);
+    }
+
+    @Test
+    public void checkCanMoveEast() {
+        // Given a value can the vehicle move 1 space in the given direction?
+        Error result = Error.NO_ERROR;
+        if (p.Plateau(5, 6) == Error.NO_ERROR) {
+            result = p.move(4, 3, Direction.EAST);
+        }
+        assertEquals(Error.NO_ERROR, result);
+    }
+
+    @Test
+    public void checkCanMoveSouth() {
+        // Given a value can the vehicle move 1 space in the given direction?
+        Error result = Error.NO_ERROR;
+        if (p.Plateau(5, 6) == Error.NO_ERROR) {
+            result = p.move(1, 1, Direction.SOUTH);
+        }
+        assertEquals(Error.NO_ERROR, result);
+    }
+
+    @Test
+    public void checkCanMoveWest() {
+        // Given a value can the vehicle move 1 space in the given direction?
+        Error result = Error.NO_ERROR;
+        if (p.Plateau(5, 6) == Error.NO_ERROR) {
+            result = p.move(1, 3, Direction.WEST);
+        }
+        assertEquals(Error.NO_ERROR, result);
     }
 }
