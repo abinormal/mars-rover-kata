@@ -7,13 +7,13 @@ import static org.junit.Assert.assertEquals;
 public class TestPlateau {
 
     @Test
-    public void checkYEdge() {
+    public void checkYEdgeCorrect() {
         Plateau p = new Plateau(15, 7);
         assertEquals(7, p.getYMax());
     }
 
     @Test
-    public void checkXEdge() {
+    public void checkXEdgeCorrect() {
         Plateau p = new Plateau(5, 27);
         assertEquals(5, p.getXMax());
     }

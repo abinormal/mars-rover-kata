@@ -20,13 +20,11 @@ class Plateau {
 }
 
 class Vehicle {
-    - speed: int
     - posX: int
     - posY: int
     - d: Direction
 
-    + Vehicle(x: int, y: int, d: Direction, speed: int)
-    + getPosition(): x: int , y: int , d: Direction
+    + Vehicle(x: int, y: int, d: Direction)
     + processMovement(movement: String) : Error
     - checkMovementString(movement: String) : Error
     - goLeft()
@@ -42,7 +40,6 @@ enum Error {
     ERROR_OVER_EDGE,
     ERROR_TAKEN_SPOT,
     ERROR_BAD_MOVEMENT_STRING,
-    ERROR_INVALID_PLATEAU_SIZE
 }
 
 enum Direction {
