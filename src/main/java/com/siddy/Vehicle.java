@@ -29,6 +29,7 @@ public abstract class Vehicle {
             switch (instruction) {
                 case "L" -> goLeft();
                 case "R" -> goRight();
+                case "M" -> move();
                 default -> System.out.println("Something else? " + instruction);
             }
         }
@@ -62,6 +63,14 @@ public abstract class Vehicle {
     }
 
     private Error move(){
+        Direction direction = this.d;
+        switch (direction) {
+            // todo add edge checking
+            case NORTH -> this.posY += 1;
+            case EAST -> this.posX += 1;
+            case SOUTH -> this.posY -= 1;
+            case WEST -> this.posX -= 1;
+        }
         return Error.NO_ERROR;
     }
 }

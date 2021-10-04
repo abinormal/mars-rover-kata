@@ -36,7 +36,6 @@ public class TestRover {
             System.out.println("Error: " + error);
         }
         assertEquals(Direction.NORTH, rover.getDirection());
-
     }
 
     @Test
@@ -46,5 +45,41 @@ public class TestRover {
             System.out.println("Error: " + error);
         }
         assertEquals(Direction.SOUTH, rover.getDirection());
+    }
+
+    @Test
+    public void checkMove() {
+        Error error = rover.processMovement("M");
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        assertEquals(6, rover.getPosX());
+    }
+
+    @Test
+    public void checkTurnLeftMove() {
+        Error error = rover.processMovement("LM");
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        assertEquals(4, rover.getPosY());
+    }
+
+    @Test
+    public void checkTurnRightMove() {
+        Error error = rover.processMovement("RM");
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        assertEquals(2, rover.getPosY());
+    }
+
+    @Test
+    public void checkTurnRightRightMove() {
+        Error error = rover.processMovement("RRM");
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        assertEquals(4, rover.getPosX());
     }
 }
