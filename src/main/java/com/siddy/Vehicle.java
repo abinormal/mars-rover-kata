@@ -15,6 +15,12 @@ public abstract class Vehicle {
     public int getPosY(){
         return this.posY;
     }
+    public int getPosX(){
+        return this.posX;
+    }
+    public Direction getDirection(){
+        return this.d;
+    }
 
     public Error processMovement(String instructions){
         return Error.NO_ERROR;
