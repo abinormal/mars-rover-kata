@@ -84,6 +84,17 @@ public class TestRover {
     }
 
     @Test
+    public void checkLongInstruction() {
+        Error error = rover.processMovement("LMLMMMLMRM");
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        assertEquals(1, rover.getPosX());
+        assertEquals(3, rover.getPosY());
+        assertEquals(Direction.WEST, rover.getDirection());
+    }
+
+    @Test
     public void checkInvalidInstructionString(){
         assertEquals(Error.ERROR_BAD_MOVEMENT_STRING, rover.processMovement("LMRFHLMMRMRLLMRL"));
     }

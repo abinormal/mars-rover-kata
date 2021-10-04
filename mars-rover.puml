@@ -29,7 +29,7 @@ class Vehicle {
     - checkMovementString(movement: String) : Error
     - goLeft()
     - goRight()
-    - move(d: Direction): Error
+    - move(): Error
 }
 
 class Rover implements Vehicle {
