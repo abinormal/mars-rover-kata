@@ -28,4 +28,19 @@ public class TestRover {
     public void checkDirection() {
         assertEquals(Direction.EAST, rover.getDirection());
     }
+
+    @Test
+    public void checkGoLeft(){
+        // A
+        String instruction = "L";
+        // A
+        Error error = rover.processMovement(instruction);
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        Direction direction = rover.getDirection();
+
+        // A
+        assertEquals(Direction.NORTH, direction);
+    }
 }
