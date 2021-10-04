@@ -1,5 +1,8 @@
 package com.siddy;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public abstract class Vehicle {
     private int posX;
     private int posY;
@@ -24,6 +27,9 @@ public abstract class Vehicle {
 
     public Error processMovement(String instructions){
         // todo - check there is a valid instruction string here.
+        if (checkMovementString(instructions) == Error.ERROR_BAD_MOVEMENT_STRING){
+            return Error.ERROR_BAD_MOVEMENT_STRING;
+        }
         String[] instructionArray = instructions.split("");
         for (String instruction : instructionArray) {
             switch (instruction) {
@@ -37,6 +43,11 @@ public abstract class Vehicle {
     }
 
     private Error checkMovementString(String instructions){
+        Pattern pattern = Pattern.compile("[^L|M|R]", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(instructions);
+        if(matcher.find()) {
+            return Error.ERROR_BAD_MOVEMENT_STRING;
+        }
         return Error.NO_ERROR;
     }
 

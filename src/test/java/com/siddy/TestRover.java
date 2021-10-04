@@ -82,4 +82,9 @@ public class TestRover {
         }
         assertEquals(4, rover.getPosX());
     }
+
+    @Test
+    public void checkInvalidInstructionString(){
+        assertEquals(Error.ERROR_BAD_MOVEMENT_STRING, rover.processMovement("LMRFHLMMRMRLLMRL"));
+    }
 }
