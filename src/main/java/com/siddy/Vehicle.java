@@ -24,15 +24,11 @@ public abstract class Vehicle {
 
     public Error processMovement(String instructions){
         // todo - check there is a valid instruction string here.
-        // todo - add a for here
         String[] instructionArray = instructions.split("");
         for (String instruction : instructionArray) {
             switch (instruction) {
-                case "L":
-                    goLeft();
-                    break;
-                default:
-                    System.out.println("Something else? " + instructions);
+                case "L" -> goLeft();
+                default -> System.out.println("Something else? " + instruction);
             }
         }
         return Error.NO_ERROR;
@@ -45,14 +41,9 @@ public abstract class Vehicle {
     private void goLeft(){
         Direction direction = this.d;
         switch (direction) {
-            case EAST:
-                this.d = Direction.NORTH;
-                break;
-            case SOUTH:
-                this.d = Direction.EAST;
-                break;
-            default:
-                System.out.println("Um.. You passed me what!");
+            case EAST -> this.d = Direction.NORTH;
+            case SOUTH -> this.d = Direction.EAST;
+            default -> System.out.println("Um.. You passed me what!");
         }
     }
 

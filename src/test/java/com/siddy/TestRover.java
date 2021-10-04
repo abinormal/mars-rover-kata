@@ -31,16 +31,10 @@ public class TestRover {
 
     @Test
     public void checkGoLeft(){
-        // A
-        String instruction = "L";
-        // A
-        Error error = rover.processMovement(instruction);
+        Error error = rover.processMovement("L");
         if (error != Error.NO_ERROR) {
             System.out.println("Error: " + error);
         }
-        Direction direction = rover.getDirection();
-
-        // A
-        assertEquals(Direction.NORTH, direction);
+        assertEquals(Direction.NORTH, rover.getDirection());
     }
 }
