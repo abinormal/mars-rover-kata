@@ -12,6 +12,10 @@ public abstract class Vehicle {
         // todo - check for collision here and throw exception if coordinates are taken
     }
 
+    public int getPosY(){
+        return this.posY;
+    }
+
     public Error processMovement(String instructions){
         return Error.NO_ERROR;
     }
