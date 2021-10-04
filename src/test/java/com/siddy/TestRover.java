@@ -10,7 +10,7 @@ public class TestRover {
     Vehicle rover;
 
     @Before
-    public void setup(){
+    public void setup() {
         rover = new Rover(3, 5, Direction.EAST);
     }
 
@@ -30,11 +30,21 @@ public class TestRover {
     }
 
     @Test
-    public void checkGoLeft(){
+    public void checkGoLeft() {
         Error error = rover.processMovement("L");
         if (error != Error.NO_ERROR) {
             System.out.println("Error: " + error);
         }
         assertEquals(Direction.NORTH, rover.getDirection());
+
+    }
+
+    @Test
+    public void checkGoRight() {
+        Error error = rover.processMovement("R");
+        if (error != Error.NO_ERROR) {
+            System.out.println("Error: " + error);
+        }
+        assertEquals(Direction.SOUTH, rover.getDirection());
     }
 }

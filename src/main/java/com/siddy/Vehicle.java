@@ -28,6 +28,7 @@ public abstract class Vehicle {
         for (String instruction : instructionArray) {
             switch (instruction) {
                 case "L" -> goLeft();
+                case "R" -> goRight();
                 default -> System.out.println("Something else? " + instruction);
             }
         }
@@ -43,12 +44,21 @@ public abstract class Vehicle {
         switch (direction) {
             case EAST -> this.d = Direction.NORTH;
             case SOUTH -> this.d = Direction.EAST;
-            default -> System.out.println("Um.. You passed me what!");
+            case WEST -> this.d = Direction.SOUTH;
+            case NORTH -> this.d = Direction.WEST;
+            default -> System.out.println("Um.. You passed me what!" + direction);
         }
     }
 
     private void goRight(){
-
+        Direction direction = this.d;
+        switch (direction){
+            case EAST -> this.d = Direction.SOUTH;
+            case SOUTH -> this.d = Direction.WEST;
+            case WEST -> this.d = Direction.NORTH;
+            case NORTH -> this.d = Direction.EAST;
+            default -> System.out.println("What direction is this?" + direction);
+        }
     }
 
     private Error move(){
