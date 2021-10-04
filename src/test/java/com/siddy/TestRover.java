@@ -2,37 +2,30 @@ package com.siddy;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestRover {
 
+    Vehicle rover;
+
+    @Before
+    public void setup(){
+        rover = new Rover(3, 5, Direction.EAST);
+    }
+
     @Test
     public void checkPositionY() {
-        // Arrange
-        Vehicle rover = new Rover(3, 5, Direction.EAST);
-        // Act
-        int y = rover.getPosY();
-        // Assert
-        assertEquals(3, y);
+        assertEquals(3, rover.getPosY());
     }
 
     @Test
     public void checkPositionX() {
-        // Arrange
-        Vehicle rover = new Rover(3, 5, Direction.EAST);
-        // Act
-        int x = rover.getPosX();
-        // Assert
-        assertEquals(5, x);
+        assertEquals(5, rover.getPosX());
     }
 
     @Test
     public void checkDirection() {
-        // Arrange
-        Vehicle rover = new Rover(3, 5, Direction.EAST);
-        // Act
-        Direction d = rover.getDirection();
-        // Assert
-        assertEquals(Direction.EAST, d);
+        assertEquals(Direction.EAST, rover.getDirection());
     }
 }
