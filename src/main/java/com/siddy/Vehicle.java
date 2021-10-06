@@ -13,6 +13,7 @@ public abstract class Vehicle {
         this.posX = x;
         this.posY = y;
         this.d = d;
+        p = new Plateau(7,7);
     }
 
     public Vehicle(int y, int x, Direction d, Plateau p) {
@@ -57,7 +58,7 @@ public abstract class Vehicle {
     }
 
     private Error checkMovementString(String instructions) {
-        Pattern pattern = Pattern.compile("[^L|M|R]", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = Pattern.compile("[^LMR]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(instructions);
         if (matcher.find()) {
             return Error.ERROR_BAD_MOVEMENT_STRING;
