@@ -7,51 +7,65 @@ public abstract class Vehicle {
     private int posX;
     private int posY;
     private Direction d;
+    private Plateau p;
 
-    public Vehicle(int y, int x, Direction d){
+    public Vehicle(int y, int x, Direction d) {
         this.posX = x;
         this.posY = y;
         this.d = d;
-        // todo - check for collision here and throw exception if coordinates are taken
     }
 
-    public int getPosY(){
+    public Vehicle(int y, int x, Direction d, Plateau p) {
+        // todo - check for collision here and throw exception if coordinates are taken
+        this.posX = x;
+        this.posY = y;
+        this.d = d;
+        this.p = p;
+    }
+
+    public int getPosY() {
         return this.posY;
     }
-    public int getPosX(){
+
+    public int getPosX() {
         return this.posX;
     }
-    public Direction getDirection(){
+
+    public Direction getDirection() {
         return this.d;
     }
 
-    public Error processMovement(String instructions){
+    public Error processMovement(String instructions) {
         // todo - check there is a valid instruction string here.
-        if (checkMovementString(instructions) == Error.ERROR_BAD_MOVEMENT_STRING){
+        if (checkMovementString(instructions) == Error.ERROR_BAD_MOVEMENT_STRING) {
             return Error.ERROR_BAD_MOVEMENT_STRING;
         }
         String[] instructionArray = instructions.split("");
         for (String instruction : instructionArray) {
-            switch (instruction) {
-                case "L" -> goLeft();
-                case "R" -> goRight();
-                case "M" -> move();
-                default -> System.out.println("Something else? " + instruction);
+            try {
+                switch (instruction) {
+                    case "L" -> goLeft();
+                    case "R" -> goRight();
+                    case "M" -> move();
+                    default -> System.out.println("Something else? " + instruction);
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
         return Error.NO_ERROR;
     }
 
-    private Error checkMovementString(String instructions){
+    private Error checkMovementString(String instructions) {
         Pattern pattern = Pattern.compile("[^L|M|R]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(instructions);
-        if(matcher.find()) {
+        if (matcher.find()) {
             return Error.ERROR_BAD_MOVEMENT_STRING;
         }
         return Error.NO_ERROR;
     }
 
-    private void goLeft(){
+    private void goLeft() {
         Direction direction = this.d;
         switch (direction) {
             case EAST -> this.d = Direction.NORTH;
@@ -62,9 +76,9 @@ public abstract class Vehicle {
         }
     }
 
-    private void goRight(){
+    private void goRight() {
         Direction direction = this.d;
-        switch (direction){
+        switch (direction) {
             case EAST -> this.d = Direction.SOUTH;
             case SOUTH -> this.d = Direction.WEST;
             case WEST -> this.d = Direction.NORTH;
@@ -73,10 +87,13 @@ public abstract class Vehicle {
         }
     }
 
-    private Error move(){
+    private Error move() throws Exception {
+        Error error = this.p.move(this.posX,this.posY,this.d);
+        if(error == Error.ERROR_OVER_EDGE){
+           throw new Exception("Rover has reached the edge");
+        }
         Direction direction = this.d;
         switch (direction) {
-            // todo add edge checking
             case NORTH -> this.posY += 1;
             case EAST -> this.posX += 1;
             case SOUTH -> this.posY -= 1;
