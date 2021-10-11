@@ -16,8 +16,9 @@ public class Main {
         do {
             System.out.println("Enter the vehicle coordinates (x y) separated by a space");
             int[] coords = getCMDNumbers();
-            Direction d = Direction.NORTH; //getDirection();
-            Vehicle rover = new Rover(coords[0], coords[1], d, plateau);
+
+            Direction d = getDirection();
+            Vehicle rover = new Rover(coords[0], coords[1], d, plateau); // todo - Must check rover lands on the plateau
 
             System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
             Error error = rover.processMovement("MMMLM");
@@ -35,17 +36,39 @@ public class Main {
 
         try {
             size = reader.readLine();
-            if (!size.matches("^[0-9 ]+$")) {
-                System.out.println("Must be a number.");
+            if (!size.matches("^[0-9 ]+$")) { // todo - Alter the regex to only accept two ints here
+                System.out.println("Must be two numbers separated by a single space.");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         String[] pSize = size.split(" ");
-
         return new int[]{Integer.parseInt(pSize[0]), Integer.parseInt(pSize[1])};
     }
 
+    private static Direction getDirection(){
+        System.out.println("Enter the direction the rover is facing - n/s/e/w : ");
+        String dir = "";
+        boolean haveResponse = false;
+        do {
+            try {
+                dir = reader.readLine();
+                if (!dir.matches("^[nsew]")) {
+                    System.out.println("Must be single character: n/s/e/w ");
+                } else {
+                    haveResponse = true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!haveResponse);
+        return switch (dir) {
+            case "n" -> Direction.NORTH;
+            case "e" -> Direction.EAST;
+            case "s" -> Direction.SOUTH;
+            default -> Direction.WEST;
+        };
+    }
 
     private static boolean addAnotherVehicle() {
         String response = "n";
