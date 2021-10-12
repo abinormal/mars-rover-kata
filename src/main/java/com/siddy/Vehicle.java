@@ -16,7 +16,7 @@ public abstract class Vehicle {
         p = new Plateau(7,7);
     }
 
-    public Vehicle(int y, int x, Direction d, Plateau p) {
+    public Vehicle(int x, int y, Direction d, Plateau p) {
         // todo - check for collision here and throw exception if coordinates are taken
         this.posX = x;
         this.posY = y;

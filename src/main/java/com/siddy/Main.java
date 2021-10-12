@@ -17,11 +17,10 @@ public class Main {
             System.out.println("Enter the vehicle coordinates (x y) separated by a space");
             int[] coords = getCMDNumbers();
 
-            Direction d = getDirection();
-            Vehicle rover = new Rover(coords[0], coords[1], d, plateau); // todo - Must check rover lands on the plateau
+            Vehicle rover = new Rover(coords[0], coords[1], getDirection(), plateau); // todo - Must check rover lands on the plateau
 
             System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
-            Error error = rover.processMovement("MMMLM");
+            Error error = rover.processMovement(getMovement());
             System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
             if (error == Error.ERROR_BAD_MOVEMENT_STRING) {
                 System.out.println("Movement string can only contain the letters LRM.");
@@ -33,7 +32,6 @@ public class Main {
 
     private static int[] getCMDNumbers() {
         String size = "";
-
         try {
             size = reader.readLine();
             if (!size.matches("^[0-9 ]+$")) { // todo - Alter the regex to only accept two ints here
@@ -68,6 +66,27 @@ public class Main {
             case "s" -> Direction.SOUTH;
             default -> Direction.WEST;
         };
+    }
+
+    private static String getMovement(){
+        System.out.println("Enter the vehicle instructions - L/R/M : ");
+        String movement = "";
+        boolean haveResponse = false;
+        do {
+            try {
+                movement = reader.readLine();
+                if (!movement.matches("^[LRM]+$")) {
+                    System.out.println("String must contain only the letters: LRM ");
+                } else {
+                    haveResponse = true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!haveResponse);
+        // We have a valid response!
+        System.out.println("Movement String: " + movement);
+        return movement;
     }
 
     private static boolean addAnotherVehicle() {
