@@ -9,24 +9,24 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Welcome to Mars!");
-        System.out.println("How large is the plateau? Enter two numbers separated by a space. ");
+        System.out.print("How large is the plateau? Enter two numbers separated by a space: ");
         int[] pSize = getCMDNumbers();
         Plateau plateau = new Plateau(pSize[0], pSize[1]);
 
         do {
-            System.out.println("Enter the vehicle coordinates (x y) separated by a space");
+            System.out.print("Enter the vehicle coordinates (x y) separated by a space: ");
             int[] coords = getCMDNumbers();
 
             Vehicle rover = new Rover(coords[0], coords[1], getDirection(), plateau);
 
-            System.out.println("Enter the vehicle instructions - L/R/M : ");
+            System.out.print("Enter the vehicle instructions - L/R/M : ");
 
             if (rover.processMovement(getCommand()) == Error.ERROR_BAD_MOVEMENT_STRING) {
                 System.out.println("Movement string can only contain the letters LRM.");
             }
             System.out.println(rover.getPosX() + " " + rover.getPosY() + " " + rover.getDirection());
         } while (addAnotherVehicle());
-
+        System.out.println("Thank you for visiting mars");
     }
 
     private static String getCommand() {
@@ -52,7 +52,7 @@ public class Main {
     }
 
     private static Direction getDirection() {
-        System.out.println("Enter the direction the rover is facing - N/S/E/W : ");
+        System.out.print("Enter the direction the rover is facing - N/S/E/W: ");
         String dir;
         boolean haveResponse = false;
         do {
@@ -72,7 +72,7 @@ public class Main {
         String response;
         boolean haveResponse = false;
         do {
-            System.out.println("Would you like to add another vehicle? y/n");
+            System.out.print("Would you like to add another vehicle? y/n: ");
             response = getCommand();
             if (response.matches("^[yn]")) haveResponse = true;
             else System.out.println("Must be either y or n");
