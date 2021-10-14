@@ -19,13 +19,12 @@ public class Main {
 
             Vehicle rover = new Rover(coords[0], coords[1], getDirection(), plateau);
 
-            // System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
-            Error error = rover.processMovement(getMovement());
-            System.out.println(rover.getPosX() + " " + rover.getPosY() + " " + rover.getDirection());
-            if (error == Error.ERROR_BAD_MOVEMENT_STRING) {
+            System.out.println("Enter the vehicle instructions - L/R/M : ");
+
+            if (rover.processMovement(getMovement()) == Error.ERROR_BAD_MOVEMENT_STRING) {
                 System.out.println("Movement string can only contain the letters LRM.");
             }
-
+            System.out.println(rover.getPosX() + " " + rover.getPosY() + " " + rover.getDirection());
         } while (addAnotherVehicle());
 
     }
@@ -74,23 +73,13 @@ public class Main {
     }
 
     private static String getMovement(){
-        System.out.println("Enter the vehicle instructions - L/R/M : ");
+
         String movement = "";
-        boolean haveResponse = false;
-        do {
             try {
                 movement = reader.readLine();
-                if (!movement.matches("^[LRM]+$")) {
-                    System.out.println("String must contain only the letters: LRM ");
-                } else {
-                    haveResponse = true;
-                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-        } while (!haveResponse);
-        // We have a valid response!
-        System.out.println("Movement String: " + movement);
         return movement;
     }
 

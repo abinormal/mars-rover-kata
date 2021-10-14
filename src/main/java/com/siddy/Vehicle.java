@@ -35,13 +35,13 @@ public abstract class Vehicle {
     }
 
     public Error processMovement(String instructions) {
-        if (checkMovementString(instructions) == Error.ERROR_BAD_MOVEMENT_STRING) {
+        if (!instructions.matches("^[LMRlmr]+$")) {
             return Error.ERROR_BAD_MOVEMENT_STRING;
         }
         String[] instructionArray = instructions.split("");
         for (String instruction : instructionArray) {
             try {
-                switch (instruction) {
+                switch (instruction.toUpperCase()) {
                     case "L" -> goLeft();
                     case "R" -> goRight();
                     case "M" -> move();
@@ -60,13 +60,6 @@ public abstract class Vehicle {
             this.posX < 0 || this.posY < 0){
             System.out.println("Vehicle is not on plateau. Good luck!");
         }
-    }
-
-    private Error checkMovementString(String instructions) {
-        if (!instructions.matches("^[LMR]+$")) {
-            return Error.ERROR_BAD_MOVEMENT_STRING;
-        }
-        return Error.NO_ERROR;
     }
 
     private void goLeft() {
