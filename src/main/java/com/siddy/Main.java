@@ -2,6 +2,7 @@ package com.siddy;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 public class Main {
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -32,27 +33,32 @@ public class Main {
 
     private static int[] getCMDNumbers() {
         String size = "";
-        try {
-            size = reader.readLine();
-            if (!size.matches("^[0-9 ]+$")) { // todo - Alter the regex to only accept two ints here
-                System.out.println("Must be two numbers separated by a single space.");
+        boolean hasSize = false;
+        do {
+            try {
+                size = reader.readLine();
+                if (!size.matches("^[0-9]+( [0-9]+)")) {
+                    System.out.println("Must be two numbers separated by a single space.");
+                } else {
+                    hasSize = true;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        } while (!hasSize);
         String[] pSize = size.split(" ");
         return new int[]{Integer.parseInt(pSize[0]), Integer.parseInt(pSize[1])};
     }
 
     private static Direction getDirection(){
-        System.out.println("Enter the direction the rover is facing - n/s/e/w : ");
+        System.out.println("Enter the direction the rover is facing - N/S/E/W : ");
         String dir = "";
         boolean haveResponse = false;
         do {
             try {
                 dir = reader.readLine();
-                if (!dir.matches("^[nsew]")) {
-                    System.out.println("Must be single character: n/s/e/w ");
+                if (!dir.matches("^[nsew|NSEW]")) {
+                    System.out.println("Must be single character: N/S/E/W ");
                 } else {
                     haveResponse = true;
                 }
@@ -60,7 +66,7 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         } while (!haveResponse);
-        return switch (dir) {
+        return switch (dir.toLowerCase()) {
             case "n" -> Direction.NORTH;
             case "e" -> Direction.EAST;
             case "s" -> Direction.SOUTH;
