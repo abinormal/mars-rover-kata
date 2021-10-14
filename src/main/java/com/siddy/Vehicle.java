@@ -17,7 +17,6 @@ public abstract class Vehicle {
     }
 
     public Vehicle(int x, int y, Direction d, Plateau p) {
-        // todo - check for collision here and throw exception if coordinates are taken
         this.posX = x;
         this.posY = y;
         this.d = d;
@@ -37,7 +36,6 @@ public abstract class Vehicle {
     }
 
     public Error processMovement(String instructions) {
-        // todo - check there is a valid instruction string here.
         if (checkMovementString(instructions) == Error.ERROR_BAD_MOVEMENT_STRING) {
             return Error.ERROR_BAD_MOVEMENT_STRING;
         }

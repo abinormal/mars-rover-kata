@@ -2,7 +2,6 @@ package com.siddy;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Locale;
 
 public class Main {
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
