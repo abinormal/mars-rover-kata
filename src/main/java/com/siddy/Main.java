@@ -21,7 +21,7 @@ public class Main {
 
             System.out.println("Enter the vehicle instructions - L/R/M : ");
 
-            if (rover.processMovement(getMovement()) == Error.ERROR_BAD_MOVEMENT_STRING) {
+            if (rover.processMovement(getCommand()) == Error.ERROR_BAD_MOVEMENT_STRING) {
                 System.out.println("Movement string can only contain the letters LRM.");
             }
             System.out.println(rover.getPosX() + " " + rover.getPosY() + " " + rover.getDirection());
@@ -29,40 +29,36 @@ public class Main {
 
     }
 
+    private static String getCommand() {
+        String movement = "";
+        try {
+            movement = reader.readLine();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return movement;
+    }
+
     private static int[] getCMDNumbers() {
-        String size = "";
+        String size;
         boolean hasSize = false;
         do {
-            try {
-                size = reader.readLine();
-                if (!size.matches("^[0-9]+( [0-9]+)")) {
-                    System.out.println("Must be two numbers separated by a single space.");
-                } else {
-                    hasSize = true;
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            size = getCommand();
+            if (!size.matches("^[0-9]+( [0-9]+)")) System.out.println("Must be two numbers separated by a single space.");
+            else hasSize = true;
         } while (!hasSize);
         String[] pSize = size.split(" ");
         return new int[]{Integer.parseInt(pSize[0]), Integer.parseInt(pSize[1])};
     }
 
-    private static Direction getDirection(){
+    private static Direction getDirection() {
         System.out.println("Enter the direction the rover is facing - N/S/E/W : ");
-        String dir = "";
+        String dir;
         boolean haveResponse = false;
         do {
-            try {
-                dir = reader.readLine();
-                if (!dir.matches("^[nsew|NSEW]")) {
-                    System.out.println("Must be single character: N/S/E/W ");
-                } else {
-                    haveResponse = true;
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            dir = getCommand();
+            if (dir.matches("^[nsew|NSEW]")) haveResponse = true;
+            else System.out.println("Must be single character: N/S/E/W ");
         } while (!haveResponse);
         return switch (dir.toLowerCase()) {
             case "n" -> Direction.NORTH;
@@ -72,33 +68,14 @@ public class Main {
         };
     }
 
-    private static String getMovement(){
-
-        String movement = "";
-            try {
-                movement = reader.readLine();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        return movement;
-    }
-
     private static boolean addAnotherVehicle() {
-        String response = "n";
+        String response;
         boolean haveResponse = false;
         do {
             System.out.println("Would you like to add another vehicle? y/n");
-            try {
-                // Reading data using readLine
-                response = reader.readLine();
-                if (!response.matches("^[yn]")) {
-                    System.out.println("Must be either y or n");
-                } else {
-                    haveResponse = true;
-                }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            response = getCommand();
+            if (response.matches("^[yn]")) haveResponse = true;
+            else System.out.println("Must be either y or n");
         } while (!haveResponse);
         return response.equals("y");
     }
