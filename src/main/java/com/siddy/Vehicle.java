@@ -7,13 +7,14 @@ public abstract class Vehicle {
     private int posX;
     private int posY;
     private Direction d;
-    private Plateau p;
+    private final Plateau p;
 
     public Vehicle(int y, int x, Direction d) {
         this.posX = x;
         this.posY = y;
         this.d = d;
         p = new Plateau(7,7);
+        vehicleOnPlateau();
     }
 
     public Vehicle(int x, int y, Direction d, Plateau p) {
@@ -21,6 +22,7 @@ public abstract class Vehicle {
         this.posY = y;
         this.d = d;
         this.p = p;
+        vehicleOnPlateau();
     }
 
     public int getPosY() {
@@ -55,6 +57,15 @@ public abstract class Vehicle {
         return Error.NO_ERROR;
     }
 
+    private void vehicleOnPlateau(){
+        // If the vehicle isn't on the Plateau
+        if (this.posX > p.getXMax() || this.posY > p.getYMax() ||
+            this.posX < 0 || this.posY < 0){
+            System.out.println("Invalid rover coordinates");
+            // todo - throw an exception here
+        }
+    }
+
     private Error checkMovementString(String instructions) {
         Pattern pattern = Pattern.compile("[^LMR]", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(instructions);
@@ -86,9 +97,8 @@ public abstract class Vehicle {
         }
     }
 
-    private Error move() throws Exception {
-        Error error = this.p.move(this.posX,this.posY,this.d);
-        if(error == Error.ERROR_OVER_EDGE){
+    private void move() throws Exception {
+        if(this.p.move(this.posX,this.posY,this.d) == Error.ERROR_OVER_EDGE){
            throw new Exception("Rover has reached the edge");
         }
         Direction direction = this.d;
@@ -98,6 +108,5 @@ public abstract class Vehicle {
             case SOUTH -> this.posY -= 1;
             case WEST -> this.posX -= 1;
         }
-        return Error.NO_ERROR;
     }
 }
