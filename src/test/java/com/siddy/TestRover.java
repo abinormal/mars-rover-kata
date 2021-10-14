@@ -1,9 +1,10 @@
 package com.siddy;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.function.ThrowingRunnable;
+
+import static org.junit.Assert.*;
 
 public class TestRover {
 
@@ -95,7 +96,13 @@ public class TestRover {
     }
 
     @Test
-    public void checkInvalidInstructionString(){
+    public void checkInvalidInstructionString() {
         assertEquals(Error.ERROR_BAD_MOVEMENT_STRING, rover.processMovement("LMRFHLMMRMRLLMRL"));
+    }
+
+    @Test
+    public void checkVehicleOnPlateau() {
+
+        rover = new Rover(12, 12, Direction.NORTH);
     }
 }

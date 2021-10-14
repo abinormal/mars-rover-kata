@@ -57,12 +57,11 @@ public abstract class Vehicle {
         return Error.NO_ERROR;
     }
 
-    private void vehicleOnPlateau(){
+    private void vehicleOnPlateau() {
         // If the vehicle isn't on the Plateau
         if (this.posX > p.getXMax() || this.posY > p.getYMax() ||
             this.posX < 0 || this.posY < 0){
-            System.out.println("Invalid rover coordinates");
-            // todo - throw an exception here
+            System.out.println("Vehicle is not on plateau. Good luck!");
         }
     }
 
