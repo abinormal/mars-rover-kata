@@ -102,7 +102,6 @@ public class TestRover {
 
     @Test
     public void checkVehicleOnPlateau() {
-
         rover = new Rover(12, 12, Direction.NORTH);
     }
 }

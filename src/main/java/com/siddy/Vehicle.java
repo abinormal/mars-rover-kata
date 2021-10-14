@@ -1,8 +1,5 @@
 package com.siddy;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public abstract class Vehicle {
     private int posX;
     private int posY;
@@ -66,9 +63,7 @@ public abstract class Vehicle {
     }
 
     private Error checkMovementString(String instructions) {
-        Pattern pattern = Pattern.compile("[^LMR]", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(instructions);
-        if (matcher.find()) {
+        if (!instructions.matches("^[LMR]+$")) {
             return Error.ERROR_BAD_MOVEMENT_STRING;
         }
         return Error.NO_ERROR;

@@ -17,11 +17,11 @@ public class Main {
             System.out.println("Enter the vehicle coordinates (x y) separated by a space");
             int[] coords = getCMDNumbers();
 
-            Vehicle rover = new Rover(coords[0], coords[1], getDirection(), plateau); // todo - Must check rover lands on the plateau
+            Vehicle rover = new Rover(coords[0], coords[1], getDirection(), plateau);
 
-            System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
+            // System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
             Error error = rover.processMovement(getMovement());
-            System.out.println("Position of the rover: x" + rover.getPosX() + " y" + rover.getPosY() + " " + rover.getDirection());
+            System.out.println(rover.getPosX() + " " + rover.getPosY() + " " + rover.getDirection());
             if (error == Error.ERROR_BAD_MOVEMENT_STRING) {
                 System.out.println("Movement string can only contain the letters LRM.");
             }
