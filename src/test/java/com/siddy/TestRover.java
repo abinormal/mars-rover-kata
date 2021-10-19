@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 
+import java.util.IllformedLocaleException;
+
 import static org.junit.Assert.*;
 
 public class TestRover {
@@ -102,6 +104,9 @@ public class TestRover {
 
     @Test
     public void checkVehicleOnPlateau() {
-        rover = new Rover(12, 12, Direction.NORTH);
+        // Test correct Exception thrown
+        Exception exception = assertThrows(IllformedLocaleException.class, () -> new Rover(12, 12, Direction.NORTH));
+        // Test correct exception message returned
+        assertEquals("Vehicle is not on plateau. Good luck!" , exception.getMessage());
     }
 }

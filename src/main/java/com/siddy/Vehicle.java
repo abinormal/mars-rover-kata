@@ -1,5 +1,7 @@
 package com.siddy;
 
+import java.util.IllformedLocaleException;
+
 public abstract class Vehicle {
     private int posX;
     private int posY;
@@ -54,11 +56,11 @@ public abstract class Vehicle {
         return Error.NO_ERROR;
     }
 
-    private void vehicleOnPlateau() {
+    private void vehicleOnPlateau() throws IllformedLocaleException{
         // If the vehicle isn't on the Plateau
         if (this.posX > p.getXMax() || this.posY > p.getYMax() ||
             this.posX < 0 || this.posY < 0){
-            System.out.println("Vehicle is not on plateau. Good luck!");
+            throw new IllformedLocaleException("Vehicle is not on plateau. Good luck!");
         }
     }
 
