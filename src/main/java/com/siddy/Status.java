@@ -1,6 +1,6 @@
 package com.siddy;
 
-public enum Error {
+public enum Status {
     NO_ERROR,
     ERROR_OVER_EDGE,
     ERROR_TAKEN_SPOT,

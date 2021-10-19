@@ -20,27 +20,27 @@ public class Plateau {
         return this.X_MAX;
     }
 
-    public Error move(int x, int y, Direction d) {
+    public Status move(int x, int y, Direction d) {
         // Check the direction then see if the vehicle would go over the edge
         return edgeCheck(x, y, d);
         // If more than one vehicle do a collision check
     }
 
-    private Error edgeCheck(int x, int y, Direction d) {
-        Error error = Error.NO_ERROR;
+    private Status edgeCheck(int x, int y, Direction d) {
+        Status status = Status.NO_ERROR;
         int x_MIN = 0;
         int y_MIN = 0;
         if ((d == Direction.NORTH && y >= this.Y_MAX) ||
             (d == Direction.EAST && x >= this.X_MAX)  ||
             (d == Direction.SOUTH && y <= y_MIN) ||
             (d == Direction.WEST && x <= x_MIN) ) {
-                error = Error.ERROR_OVER_EDGE;
+            status = Status.ERROR_OVER_EDGE;
         }
-        return error;
+        return status;
     }
 
-    private Error collisionCheck(){
+    private Status collisionCheck(){
         // This bit is for when more than one Vehicle is introduced.
-        return Error.NO_ERROR;
+        return Status.NO_ERROR;
     }
 }

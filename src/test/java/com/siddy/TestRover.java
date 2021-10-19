@@ -34,17 +34,17 @@ public class TestRover {
 
     @Test
     public void checkGoLeft() {
-        Error error = rover.processMovement("L");
-        if (error != Error.NO_ERROR) {
-            System.out.println("Error: " + error);
+        Status status = rover.processMovement("L");
+        if (status != Status.NO_ERROR) {
+            System.out.println("Error: " + status);
         }
         assertEquals(Direction.NORTH, rover.getDirection());
     }
 
     @Test
     public void checkGoRight() {
-        Error error = rover.processMovement("R");
-        if (error != Error.NO_ERROR) {
+        Status error = rover.processMovement("R");
+        if (error != Status.NO_ERROR) {
             System.out.println("Error: " + error);
         }
         assertEquals(Direction.SOUTH, rover.getDirection());
@@ -52,45 +52,45 @@ public class TestRover {
 
     @Test
     public void checkMove() {
-        Error error = rover.processMovement("M");
-        if (error != Error.NO_ERROR) {
-            System.out.println("Error: " + error);
+        Status status = rover.processMovement("M");
+        if (status != Status.NO_ERROR) {
+            System.out.println("Error: " + status);
         }
         assertEquals(6, rover.getPosX());
     }
 
     @Test
     public void checkTurnLeftMove() {
-        Error error = rover.processMovement("LM");
-        if (error != Error.NO_ERROR) {
-            System.out.println("Error: " + error);
+        Status status = rover.processMovement("LM");
+        if (status != Status.NO_ERROR) {
+            System.out.println("Error: " + status);
         }
         assertEquals(4, rover.getPosY());
     }
 
     @Test
     public void checkTurnRightMove() {
-        Error error = rover.processMovement("RM");
-        if (error != Error.NO_ERROR) {
-            System.out.println("Error: " + error);
+        Status status = rover.processMovement("RM");
+        if (status != Status.NO_ERROR) {
+            System.out.println("Error: " + status);
         }
         assertEquals(2, rover.getPosY());
     }
 
     @Test
     public void checkTurnRightRightMove() {
-        Error error = rover.processMovement("RRM");
-        if (error != Error.NO_ERROR) {
-            System.out.println("Error: " + error);
+        Status status = rover.processMovement("RRM");
+        if (status != Status.NO_ERROR) {
+            System.out.println("Error: " + status);
         }
         assertEquals(4, rover.getPosX());
     }
 
     @Test
     public void checkLongInstruction() {
-        Error error = rover.processMovement("LMLMMMLMRM");
-        if (error != Error.NO_ERROR) {
-            System.out.println("Error: " + error);
+        Status status = rover.processMovement("LMLMMMLMRM");
+        if (status != Status.NO_ERROR) {
+            System.out.println("Error: " + status);
         }
         assertEquals(1, rover.getPosX());
         assertEquals(3, rover.getPosY());
@@ -99,7 +99,7 @@ public class TestRover {
 
     @Test
     public void checkInvalidInstructionString() {
-        assertEquals(Error.ERROR_BAD_MOVEMENT_STRING, rover.processMovement("LMRFHLMMRMRLLMRL"));
+        assertEquals(Status.ERROR_BAD_MOVEMENT_STRING, rover.processMovement("LMRFHLMMRMRLLMRL"));
     }
 
     @Test

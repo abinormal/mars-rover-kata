@@ -21,12 +21,12 @@ public class Main {
 
             System.out.print("Enter the vehicle instructions - L/R/M : ");
 
-            if (rover.processMovement(getCommand()) == Error.ERROR_BAD_MOVEMENT_STRING) {
+            if (rover.processMovement(getCommand()) == Status.ERROR_BAD_MOVEMENT_STRING) {
                 System.out.println("Movement string can only contain the letters LRM.");
             }
             System.out.println(rover.getPosX() + " " + rover.getPosY() + " " + rover.getDirection());
         } while (addAnotherVehicle());
-        System.out.println("Thank you for visiting mars");
+        System.out.println("Thank you for visiting Mars");
     }
 
     private static String getCommand() {

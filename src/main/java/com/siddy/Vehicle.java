@@ -36,9 +36,9 @@ public abstract class Vehicle {
         return this.d;
     }
 
-    public Error processMovement(String instructions) {
+    public Status processMovement(String instructions) {
         if (!instructions.matches("^[LMRlmr]+$")) {
-            return Error.ERROR_BAD_MOVEMENT_STRING;
+            return Status.ERROR_BAD_MOVEMENT_STRING;
         }
         String[] instructionArray = instructions.split("");
         for (String instruction : instructionArray) {
@@ -53,7 +53,7 @@ public abstract class Vehicle {
                 System.out.println(e.getMessage());
             }
         }
-        return Error.NO_ERROR;
+        return Status.NO_ERROR;
     }
 
     private void vehicleOnPlateau() throws IllformedLocaleException{
@@ -87,7 +87,7 @@ public abstract class Vehicle {
     }
 
     private void move() throws Exception {
-        if(this.p.move(this.posX,this.posY,this.d) == Error.ERROR_OVER_EDGE){
+        if(this.p.move(this.posX,this.posY,this.d) == Status.ERROR_OVER_EDGE){
            throw new Exception("Rover has reached the edge");
         }
         Direction direction = this.d;
